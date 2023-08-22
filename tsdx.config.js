@@ -1,28 +1,21 @@
+const postcss = require('rollup-plugin-postcss');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 module.exports = {
-  // ... outras configurações ...
-
-  // Adicione o módulo 'css-loader' para processar arquivos CSS
   rollup(config, options) {
-    config.plugins = config.plugins.map(plugin => {
-      if (plugin.name === 'replace') {
-        // Atualize esta configuração se necessário
-        return require('rollup-plugin-replace')({
-          'process.env.NODE_ENV': JSON.stringify(options.env),
-        });
-      }
-      return plugin;
-    });
-
     config.plugins.push(
-      // Adicione o loader para arquivos CSS
-      require('rollup-plugin-postcss')({
-        modules: true, // ativar módulos CSS (opcional)
-        extract: true, // extrair estilos para um arquivo separado (opcional)
-        minimize: true, // minificar estilos (opcional)
-        inject: { insertAt: 'top' }, // injetar estilos no topo do <head> (opcional)
+      postcss({
+        plugins: [
+          autoprefixer(),
+          cssnano({
+            preset: 'default',
+          }),
+        ],
+        inject: false,
+        // only write out CSS for the first bundle (avoids pointless extra files):
+        extract: !!options.writeMeta,
       })
     );
-
     return config;
   },
 };

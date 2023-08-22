@@ -20,7 +20,6 @@ export {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  useModalDisclosure,
 } from './Modal';
 export { Flex } from './Flex';
 export { Heading } from './Heading';

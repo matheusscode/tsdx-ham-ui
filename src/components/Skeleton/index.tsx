@@ -1,4 +1,3 @@
-import './Skeleton.css';
 import React, {
   ReactNode,
   CSSProperties,
@@ -10,6 +9,7 @@ import {
   useInteractiveStyles,
   ExtendedCSSProperties,
 } from '../../utils/useInteractiveStyles';
+import { StyledSkeleton } from './Skeleton';
 
 interface SkeletonProps extends ExtendedCSSProperties {
   children?: ReactNode;
@@ -54,10 +54,10 @@ export const Skeleton = ({
   });
 
   return (
-    <div
+    <StyledSkeleton
       style={combinedStyles}
-      className={`skeleton${isLoading ? ' loading' : ''}${
-        isContentLoaded ? ' content-loaded' : ''
+      className={`${isLoading ? 'loading' : ''}${
+        isContentLoaded ? 'content-loaded' : ''
       }`}
       ref={skeletonRef}
       {...rest}
@@ -68,7 +68,7 @@ export const Skeleton = ({
         {children}
         <div style={afterStyles} />
       </div>
-    </div>
+    </StyledSkeleton>
   );
 };
 

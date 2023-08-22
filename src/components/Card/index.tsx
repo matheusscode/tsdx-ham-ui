@@ -1,8 +1,14 @@
-import React, { ReactNode, CSSProperties } from "react";
+import React, { ReactNode, CSSProperties } from 'react';
 import {
   useInteractiveStyles,
   ExtendedCSSProperties,
-} from "../../utils/useInteractiveStyles";
+} from '../../utils/useInteractiveStyles';
+import {
+  CardContainer,
+  CardHeaderContainer,
+  CardBodyContainer,
+  CardFooterContainer,
+} from './styles';
 
 interface CardProps extends ExtendedCSSProperties {
   children?: ReactNode;
@@ -12,100 +18,78 @@ interface CardProps extends ExtendedCSSProperties {
 }
 
 export const Card = ({ children, ...rest }: CardProps) => {
-  const baseStylesWithDefault: CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
-    borderRadius: "10px",
-    boxShadow: "0 0 3px rgba(0,0,0,0.3)",
-    width: "100%",
-    height: "100%",
-    ...rest,
-  };
-
-  const [combinedStyles, { beforeStyles, afterStyles, eventHandlers }] =
-    useInteractiveStyles({
-      baseStyles: baseStylesWithDefault,
-      beforeStyles: rest._before,
-      afterStyles: rest._after,
-    });
+  const [
+    combinedStyles,
+    { beforeStyles, afterStyles, eventHandlers },
+  ] = useInteractiveStyles({
+    baseStyles: rest,
+    beforeStyles: rest._before,
+    afterStyles: rest._after,
+  });
 
   return (
-    <div style={combinedStyles} {...eventHandlers}>
-      {" "}
+    <CardContainer style={combinedStyles} {...eventHandlers}>
+      {' '}
       <div style={beforeStyles} />
       {children}
       <div style={afterStyles} />
-    </div>
+    </CardContainer>
   );
 };
 export const CardHeader = ({ children, ...rest }: CardProps) => {
-  const baseStylesWithDefault: CSSProperties = {
-    display: "flex",
-    padding: "1rem",
-    borderRadius: "10px 10px 0 0",
-    ...rest,
-  };
-
-  const [combinedStyles, { beforeStyles, afterStyles, eventHandlers }] =
-    useInteractiveStyles({
-      baseStyles: baseStylesWithDefault,
-      beforeStyles: rest._before,
-      afterStyles: rest._after,
-    });
+  const [
+    combinedStyles,
+    { beforeStyles, afterStyles, eventHandlers },
+  ] = useInteractiveStyles({
+    baseStyles: rest,
+    beforeStyles: rest._before,
+    afterStyles: rest._after,
+  });
 
   return (
-    <div style={combinedStyles} {...eventHandlers}>
-      {" "}
+    <CardHeaderContainer style={combinedStyles} {...eventHandlers}>
+      {' '}
       <div style={beforeStyles} />
       {children}
       <div style={afterStyles} />
-    </div>
+    </CardHeaderContainer>
   );
 };
 
 export const CardBody = ({ children, ...rest }: CardProps) => {
-  const baseStylesWithDefault: CSSProperties = {
-    display: "flex",
-    padding: "1rem",
-    ...rest,
-  };
-
-  const [combinedStyles, { beforeStyles, afterStyles, eventHandlers }] =
-    useInteractiveStyles({
-      baseStyles: baseStylesWithDefault,
-      beforeStyles: rest._before,
-      afterStyles: rest._after,
-    });
+  const [
+    combinedStyles,
+    { beforeStyles, afterStyles, eventHandlers },
+  ] = useInteractiveStyles({
+    baseStyles: rest,
+    beforeStyles: rest._before,
+    afterStyles: rest._after,
+  });
 
   return (
-    <div style={combinedStyles} {...eventHandlers}>
+    <CardBodyContainer style={combinedStyles} {...eventHandlers}>
       <div style={beforeStyles} />
       {children}
       <div style={afterStyles} />
-    </div>
+    </CardBodyContainer>
   );
 };
 
 export const CardFooter = ({ children, ...rest }: CardProps) => {
-  const baseStylesWithDefault: CSSProperties = {
-    display: "flex",
-    padding: "1rem",
-    borderRadius: "0 0 10px 10px",
-    ...rest,
-  };
-
-  const [combinedStyles, { beforeStyles, afterStyles, eventHandlers }] =
-    useInteractiveStyles({
-      baseStyles: baseStylesWithDefault,
-      beforeStyles: rest._before,
-      afterStyles: rest._after,
-    });
+  const [
+    combinedStyles,
+    { beforeStyles, afterStyles, eventHandlers },
+  ] = useInteractiveStyles({
+    baseStyles: rest,
+    beforeStyles: rest._before,
+    afterStyles: rest._after,
+  });
 
   return (
-    <div style={combinedStyles} {...eventHandlers}>
+    <CardFooterContainer style={combinedStyles} {...eventHandlers}>
       <div style={beforeStyles} />
       {children}
       <div style={afterStyles} />
-    </div>
+    </CardFooterContainer>
   );
 };
