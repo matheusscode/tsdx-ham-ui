@@ -1,14 +1,5 @@
-import React, {
-  ReactNode,
-  CSSProperties,
-  useEffect,
-  useState,
-  useRef,
-} from 'react';
-import {
-  ExtendedCSSProperties,
-  useInteractiveStyles,
-} from '../../utils/useInteractiveStyles';
+import React, { useEffect, useState, useRef } from 'react';
+import { useInteractiveStyles } from '../../utils/useInteractiveStyles';
 import {
   MenuButtonContainer,
   MenuContainer,
@@ -16,38 +7,7 @@ import {
   MenuItemContainer,
   MenuListContainer,
 } from './styles';
-
-interface MenuProps extends ExtendedCSSProperties {
-  children?: ReactNode;
-  _before?: CSSProperties & { _hover?: CSSProperties };
-  _after?: CSSProperties & { _hover?: CSSProperties };
-  _active?: CSSProperties;
-  isOpen?: boolean;
-  setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-interface RippleProps {
-  left: number;
-  top: number;
-  diameter: number;
-}
-
-interface MenuListProps extends ExtendedCSSProperties {
-  forPosition?: 'left' | 'right' | 'center';
-  children?: ReactNode;
-  _before?: CSSProperties & { _hover?: CSSProperties };
-  _after?: CSSProperties & { _hover?: CSSProperties };
-  _active?: CSSProperties;
-  isOpen?: boolean;
-  setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-interface MenuItemProps {
-  isOpen?: boolean;
-  setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
-  children?: ReactNode;
-  rippleAnimation?: boolean;
-}
+import type { MenuListProps, MenuProps, MenuItemProps,RippleProps } from './types';
 
 export const Menu = ({ children, ...rest }: MenuProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -210,7 +170,11 @@ export const MenuList = ({
   const positionStyles = getPositionStyles();
 
   return (
-    <MenuListContainer isOpen={isOpen} forPosition={forPosition} style={{ ...combinedStyles, ...positionStyles }}>
+    <MenuListContainer
+      isOpen={isOpen}
+      forPosition={forPosition}
+      style={{ ...combinedStyles, ...positionStyles }}
+    >
       <div style={beforeStyles} />
       {children}
       <div style={afterStyles} />

@@ -1,23 +1,16 @@
-import React, { CSSProperties, ReactNode } from "react";
-import {
-  useInteractiveStyles,
-  ExtendedCSSProperties,
-} from "../../utils/useInteractiveStyles";
-
-interface ListProps extends ExtendedCSSProperties {
-  children?: ReactNode;
-  _before?: CSSProperties & { _hover?: CSSProperties };
-  _after?: CSSProperties & { _hover?: CSSProperties };
-  _active?: CSSProperties;
-}
+import React, { CSSProperties } from 'react';
+import { useInteractiveStyles } from '../../utils/useInteractiveStyles';
+import { ListProps } from './types';
 
 export const ListItem = ({ children, ...rest }: ListProps) => {
-  const [combinedStyles, { beforeStyles, afterStyles, eventHandlers }] =
-    useInteractiveStyles({
-      baseStyles: rest,
-      beforeStyles: rest._before,
-      afterStyles: rest._after,
-    });
+  const [
+    combinedStyles,
+    { beforeStyles, afterStyles, eventHandlers },
+  ] = useInteractiveStyles({
+    baseStyles: rest,
+    beforeStyles: rest._before,
+    afterStyles: rest._after,
+  });
 
   return (
     <li style={combinedStyles} {...rest} {...eventHandlers}>
@@ -29,12 +22,14 @@ export const ListItem = ({ children, ...rest }: ListProps) => {
 };
 
 export const OrderedList = ({ children, ...rest }: ListProps) => {
-  const [combinedStyles, { beforeStyles, afterStyles, eventHandlers }] =
-    useInteractiveStyles({
-      baseStyles: rest,
-      beforeStyles: rest._before,
-      afterStyles: rest._after,
-    });
+  const [
+    combinedStyles,
+    { beforeStyles, afterStyles, eventHandlers },
+  ] = useInteractiveStyles({
+    baseStyles: rest,
+    beforeStyles: rest._before,
+    afterStyles: rest._after,
+  });
 
   return (
     <ol style={combinedStyles} {...rest} {...eventHandlers}>
@@ -46,12 +41,14 @@ export const OrderedList = ({ children, ...rest }: ListProps) => {
 };
 
 export const UnordererdList = ({ children, ...rest }: ListProps) => {
-  const [combinedStyles, { beforeStyles, afterStyles, eventHandlers }] =
-    useInteractiveStyles({
-      baseStyles: rest,
-      beforeStyles: rest._before,
-      afterStyles: rest._after,
-    });
+  const [
+    combinedStyles,
+    { beforeStyles, afterStyles, eventHandlers },
+  ] = useInteractiveStyles({
+    baseStyles: rest,
+    beforeStyles: rest._before,
+    afterStyles: rest._after,
+  });
 
   return (
     <ul style={combinedStyles} {...rest} {...eventHandlers}>
@@ -64,16 +61,18 @@ export const UnordererdList = ({ children, ...rest }: ListProps) => {
 
 export const List = ({ children, ...rest }: ListProps) => {
   const baseStylesWithDefault: CSSProperties = {
-    listStyleType: "none",
+    listStyleType: 'none',
     ...rest,
   };
 
-  const [combinedStyles, { beforeStyles, afterStyles, eventHandlers }] =
-    useInteractiveStyles({
-      baseStyles: baseStylesWithDefault,
-      beforeStyles: rest._before,
-      afterStyles: rest._after,
-    });
+  const [
+    combinedStyles,
+    { beforeStyles, afterStyles, eventHandlers },
+  ] = useInteractiveStyles({
+    baseStyles: baseStylesWithDefault,
+    beforeStyles: rest._before,
+    afterStyles: rest._after,
+  });
 
   return (
     <ul style={combinedStyles} {...rest} {...eventHandlers}>

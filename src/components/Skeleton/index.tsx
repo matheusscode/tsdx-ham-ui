@@ -1,23 +1,7 @@
-import React, {
-  ReactNode,
-  CSSProperties,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-import {
-  useInteractiveStyles,
-  ExtendedCSSProperties,
-} from '../../utils/useInteractiveStyles';
+import React, { useEffect, useRef, useState } from 'react';
+import { useInteractiveStyles } from '../../utils/useInteractiveStyles';
 import { StyledSkeleton } from './Skeleton';
-
-interface SkeletonProps extends ExtendedCSSProperties {
-  children?: ReactNode;
-  _before?: CSSProperties & { _hover?: CSSProperties };
-  _after?: CSSProperties & { _hover?: CSSProperties };
-  _active?: CSSProperties;
-  isLoading?: boolean;
-}
+import { SkeletonProps } from './types';
 
 export const Skeleton = ({
   isLoading: externalIsLoading,

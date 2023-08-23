@@ -1,29 +1,11 @@
-import React, {
-  useState,
-  ReactNode,
-  CSSProperties,
-  InputHTMLAttributes,
-} from "react";
-import {
-  useInteractiveStyles,
-  ExtendedCSSProperties,
-} from "../../utils/useInteractiveStyles";
-
-interface SwitchProps extends ExtendedCSSProperties {
-  children?: ReactNode;
-  _before?: CSSProperties & { _hover?: CSSProperties };
-  _after?: CSSProperties & { _hover?: CSSProperties };
-  _active?: CSSProperties;
-  onToggle?: (isChecked: boolean) => void;
-  defaultChecked?: boolean;
-  switchSize?: "sm" | "md" | "lg" | "xl";
-  colorScheme?: string;
-}
+import React, { useState, CSSProperties, InputHTMLAttributes } from 'react';
+import { useInteractiveStyles } from '../../utils/useInteractiveStyles';
+import { SwitchProps } from './types';
 
 export const Switch = ({
   onToggle,
   defaultChecked,
-  colorScheme = "#40962b",
+  colorScheme = '#40962b',
   switchSize,
   ...rest
 }: SwitchProps & InputHTMLAttributes<HTMLInputElement>) => {
@@ -41,35 +23,35 @@ export const Switch = ({
 
   const getSizeStyles = () => {
     switch (switchSize) {
-      case "sm":
+      case 'sm':
         return {
-          "--switch-width": "38px",
-          "--switch-height": "23px",
-          "--ball-size": "16px",
+          '--switch-width': '38px',
+          '--switch-height': '23px',
+          '--ball-size': '16px',
         };
-      case "md":
+      case 'md':
         return {
-          "--switch-width": "44px",
-          "--switch-height": "23px",
-          "--ball-size": "16px",
+          '--switch-width': '44px',
+          '--switch-height': '23px',
+          '--ball-size': '16px',
         };
-      case "lg":
+      case 'lg':
         return {
-          "--switch-width": "46px",
-          "--switch-height": "23px",
-          "--ball-size": "16px",
+          '--switch-width': '46px',
+          '--switch-height': '23px',
+          '--ball-size': '16px',
         };
-      case "xl":
+      case 'xl':
         return {
-          "--switch-width": "50px",
-          "--switch-height": "26px",
-          "--ball-size": "20px",
+          '--switch-width': '50px',
+          '--switch-height': '26px',
+          '--ball-size': '20px',
         };
       default:
         return {
-          "--switch-width": "44px",
-          "--switch-height": "23px",
-          "--ball-size": "16px",
+          '--switch-width': '44px',
+          '--switch-height': '23px',
+          '--ball-size': '16px',
         };
     }
   };
@@ -80,44 +62,44 @@ export const Switch = ({
   };
 
   const switchStyles: CSSProperties = {
-    position: "relative",
-    display: "inline-block",
-    width: "var(--switch-width, 40px)",
-    height: "var(--switch-height, 20px)",
+    position: 'relative',
+    display: 'inline-block',
+    width: 'var(--switch-width, 40px)',
+    height: 'var(--switch-height, 20px)',
     ...(combinedStylesWithSize as any),
   };
 
   const sliderStyles: CSSProperties = {
-    position: "absolute",
-    cursor: "pointer",
+    position: 'absolute',
+    cursor: 'pointer',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "#ccc",
-    borderRadius: "20px",
-    transition: "background-color 0.3s",
+    backgroundColor: '#ccc',
+    borderRadius: '20px',
+    transition: 'background-color 0.3s',
   };
 
   const sliderBeforeStyles: CSSProperties = {
-    position: "absolute",
-    content: "",
-    height: "var(--ball-size, 16px)",
-    width: "var(--ball-size, 16px)",
-    left: isChecked ? "0px" : "3px",
-    bottom: "3px",
-    backgroundColor: "white",
-    borderRadius: "50%",
-    transition: "transform 0.3s, background 0.3s, border-radius 0.3s",
-    background: "#ffffff",
+    position: 'absolute',
+    content: '',
+    height: 'var(--ball-size, 16px)',
+    width: 'var(--ball-size, 16px)',
+    left: isChecked ? '0px' : '3px',
+    bottom: '3px',
+    backgroundColor: 'white',
+    borderRadius: '50%',
+    transition: 'transform 0.3s, background 0.3s, border-radius 0.3s',
+    background: '#ffffff',
   };
 
   if (isChecked) {
     sliderStyles.backgroundColor = colorScheme;
     sliderBeforeStyles.transform =
-      "translateX(calc(var(--switch-width) - var(--ball-size, 16px) - 3px))";
+      'translateX(calc(var(--switch-width) - var(--ball-size, 16px) - 3px))';
   } else {
-    sliderBeforeStyles.transform = "translateX(0)";
+    sliderBeforeStyles.transform = 'translateX(0)';
   }
 
   return (

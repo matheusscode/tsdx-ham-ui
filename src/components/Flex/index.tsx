@@ -1,37 +1,24 @@
-import React, { ReactNode, CSSProperties } from 'react';
-import {
-  ExtendedCSSProperties,
-  useInteractiveStyles,
-} from '../../utils/useInteractiveStyles';
+import React from 'react';
+import { useInteractiveStyles } from '../../utils/useInteractiveStyles';
+import { FlexProps } from './types';
+import { CustomDiv } from './styles';
 
-interface Flex extends ExtendedCSSProperties {
-  children?: ReactNode;
-  _before?: CSSProperties & { _hover?: CSSProperties };
-  _after?: CSSProperties & { _hover?: CSSProperties };
-  _active?: CSSProperties;
-}
-
-export const Flex = ({ children, ...rest }: Flex) => {
-  const baseStylesWithDefault = {
-    display: 'flex',
-    ...rest,
-  };
-
+export const Flex = ({ children, ...rest }: FlexProps) => {
   const [
     combinedStyles,
     { beforeStyles, afterStyles, eventHandlers },
   ] = useInteractiveStyles({
-    baseStyles: baseStylesWithDefault,
+    baseStyles: rest,
     beforeStyles: rest._before,
     afterStyles: rest._after,
   });
 
   return (
-    <div style={combinedStyles} {...eventHandlers}>
+    <CustomDiv style={combinedStyles} {...eventHandlers}>
       <div style={beforeStyles} />
       {children}
       <div style={afterStyles} />
-    </div>
+    </CustomDiv>
   );
 };
 
