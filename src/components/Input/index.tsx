@@ -1,44 +1,17 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-} from 'react';
+import React from 'react';
 import { useInteractiveStyles } from '../../utils/useInteractiveStyles';
-import  { InputElementProps, InputGroupProps, InputProps } from './types';
-import { GroupContainer,InputContainer, LabelContainer } from "./styles"
+import { InputElementProps, InputGroupProps, InputProps } from './types';
+import { GroupContainer, InputContainer, LabelContainer } from './styles';
 
 export const Input = ({
   variant,
   backgroundColor,
   ...rest
 }: InputProps & React.InputHTMLAttributes<HTMLInputElement>) => {
-  const [isFocused, setIsFocused] = useState<boolean>(false);
-  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleOutsideClick = (event: MouseEvent) => {
-    if (inputRef.current && !inputRef.current.contains(event.target as Node)) {
-      setIsFocused(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", handleOutsideClick);
-
-    return () => {
-      document.removeEventListener("click", handleOutsideClick);
-    };
-  }, []);
 
   return (
-    <InputContainer
-      ref={inputRef}
-      type="text"
-      onClick={() => setIsFocused(true)}
-      onBlur={() => setIsFocused(true)}
-      isFocused={isFocused}
-      variant={variant}
-      {...rest}
-    />
+    <InputContainer  type="text" variant={variant} {...rest} />
   );
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useInteractiveStyles } from '../../utils/useInteractiveStyles';
 import {
   BodyContainer,
@@ -25,6 +25,14 @@ export const Modal = ({ children, isOpen, ...rest }: ModalFunctionalyProps) => {
     beforeStyles: rest._before,
     afterStyles: rest._after,
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isOpen]);
 
   return (
     <ModalContainer

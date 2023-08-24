@@ -8,7 +8,7 @@ export interface DrawerProps extends ExtendedCSSProperties {
   _active?: CSSProperties;
 }
 
-export interface DrawerCProps extends ExtendedCSSProperties {
+export interface DrawerPropsFunctionalyProps extends ExtendedCSSProperties {
   isOpen?: boolean;
   onClose?: () => void;
   children?: ReactNode;

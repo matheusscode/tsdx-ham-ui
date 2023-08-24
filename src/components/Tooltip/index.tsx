@@ -1,48 +1,48 @@
-import React from "react";
-import { useInteractiveStyles } from "../../utils/useInteractiveStyles";
-import { TooltipProps } from "./types";
-import { TooltipBottom, TooltipContainer, TooltipContent, TooltipLeft, TooltipTop } from "./styles";
+import React from 'react';
+import { useInteractiveStyles } from '../../utils/useInteractiveStyles';
+import { TooltipProps } from './types';
+import {
+  TooltipBottom,
+  TooltipContainer,
+  TooltipContent,
+  TooltipLeft,
+  TooltipTop,
+} from './styles';
 
 export const Tooltip = ({
   children,
   text,
-  colorScheme = "#000000",
-  forPosition = "bottom",
+  colorScheme = '#000000',
+  forPosition = 'bottom',
   ...rest
 }: TooltipProps) => {
-  const [combinedStyles, { beforeStyles, afterStyles, eventHandlers }] =
-    useInteractiveStyles({
-      baseStyles: rest,
-      beforeStyles: rest._before,
-      afterStyles: rest._after,
-    });
+  const [combinedStyles] = useInteractiveStyles({
+    baseStyles: rest,
+    beforeStyles: rest._before,
+    afterStyles: rest._after,
+  });
 
   return (
-    <TooltipContainer
-      style={combinedStyles}
-      {...eventHandlers}
-    >
-      <div style={beforeStyles}></div>
+    <TooltipContainer style={combinedStyles}>
       {children}
-      <div style={afterStyles} />
-      {forPosition === "top" && (
+      {forPosition === 'top' && (
         <TooltipTop>
-          <TooltipContent>{text}</TooltipContent>
+          <TooltipContent className="tooltip-content">{text}</TooltipContent>
         </TooltipTop>
       )}
-      {forPosition === "bottom" && (
+      {forPosition === 'bottom' && (
         <TooltipBottom>
-          <TooltipContent>{text}</TooltipContent>
+          <TooltipContent className="tooltip-content">{text}</TooltipContent>
         </TooltipBottom>
       )}
-      {forPosition === "left" && (
+      {forPosition === 'left' && (
         <TooltipLeft>
-          <TooltipContent>{text}</TooltipContent>
+          <TooltipContent className="tooltip-content">{text}</TooltipContent>
         </TooltipLeft>
       )}
-      {forPosition === "right" && (
+      {forPosition === 'right' && (
         <TooltipContent>
-          <TooltipContent>{text}</TooltipContent>
+          <TooltipContent className="tooltip-content">{text}</TooltipContent>
         </TooltipContent>
       )}
     </TooltipContainer>

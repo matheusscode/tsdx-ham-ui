@@ -1,5 +1,5 @@
 {
-  "version": "0.1.54",
+  "version": "0.1.4",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -34,16 +34,16 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "my-components-ham-ui-lib",
+  "name": "advent-ui",
   "author": "Matheus Figueiredo",
-  "module": "dist/my-components-ham-ui-lib.esm.js",
+  "module": "dist/advent-ui.esm.js",
   "size-limit": [
     {
-      "path": "dist/my-components-ham-ui-lib.cjs.production.min.js",
+      "path": "dist/advent-ui.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/my-components-ham-ui-lib.esm.js",
+      "path": "dist/advent-ui.esm.js",
       "limit": "10 KB"
     }
   ],

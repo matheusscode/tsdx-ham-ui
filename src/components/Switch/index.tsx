@@ -88,10 +88,9 @@ export const Switch = ({
     width: 'var(--ball-size, 16px)',
     left: isChecked ? '0px' : '3px',
     bottom: '3px',
-    backgroundColor: 'white',
     borderRadius: '50%',
     transition: 'transform 0.3s, background 0.3s, border-radius 0.3s',
-    background: '#ffffff',
+    backgroundColor: '#ffffff',
   };
 
   if (isChecked) {

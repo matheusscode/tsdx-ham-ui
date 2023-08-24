@@ -7,6 +7,7 @@ export const TooltipContainer = styled.div`
 
   &:hover .tooltip-content {
     visibility: visible;
+    opacity: 1;
   }
 `;
 
@@ -19,8 +20,8 @@ export const TooltipContent = styled.div`
   visibility: hidden;
   font-size: 1rem;
   z-index: 1;
-  min-width: 80px;
-  width: 100%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 `;
 
 export const TooltipTop = styled.div`
@@ -46,7 +47,7 @@ export const TooltipTop = styled.div`
 
 export const TooltipBottom = styled.div`
   ${TooltipContent} {
-    top: 180%;
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
   }

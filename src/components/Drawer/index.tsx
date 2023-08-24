@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useInteractiveStyles } from '../../utils/useInteractiveStyles';
 import {
-  DrawerCProps,
+  DrawerPropsFunctionalyProps,
   DrawerCloseButtonProps,
   DrawerOverlayProps,
   DrawerProps,
@@ -16,7 +16,11 @@ import {
   OverlayContainer,
 } from './styles';
 
-export function Drawer({ children, isOpen, ...rest }: DrawerCProps) {
+export function Drawer({
+  children,
+  isOpen,
+  ...rest
+}: DrawerPropsFunctionalyProps) {
   const [
     combinedStyles,
     { beforeStyles, afterStyles, eventHandlers },
@@ -26,8 +30,21 @@ export function Drawer({ children, isOpen, ...rest }: DrawerCProps) {
     afterStyles: rest._after,
   });
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isOpen]);
+
   return (
-    <DrawerContainer style={combinedStyles} {...rest} {...eventHandlers}>
+    <DrawerContainer
+      isOpen={isOpen}
+      style={combinedStyles}
+      {...rest}
+      {...eventHandlers}
+    >
       <div style={beforeStyles} />
       {children}
       <div style={afterStyles} />
@@ -52,7 +69,11 @@ export function DrawerOverlay({ onClose, ...rest }: DrawerOverlayProps) {
   );
 }
 
-export function DrawerContent({ children, isOpen, ...rest }: DrawerCProps) {
+export function DrawerContent({
+  children,
+  isOpen,
+  ...rest
+}: DrawerPropsFunctionalyProps) {
   const [
     combinedStyles,
     { beforeStyles, afterStyles, eventHandlers },
@@ -63,7 +84,12 @@ export function DrawerContent({ children, isOpen, ...rest }: DrawerCProps) {
   });
 
   return (
-    <ContentContainer style={combinedStyles} {...rest} {...eventHandlers}>
+    <ContentContainer
+      isOpen={isOpen}
+      style={combinedStyles}
+      {...rest}
+      {...eventHandlers}
+    >
       <div style={beforeStyles} />
       {children}
       <div style={afterStyles} />

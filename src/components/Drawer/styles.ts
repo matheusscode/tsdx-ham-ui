@@ -5,14 +5,14 @@ interface DrawerProps {
 }
 
 export const DrawerContainer = styled.div<DrawerProps>`
-  position: absolute;
+  position: fixed;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: ${(props: DrawerProps) => (props.isOpen ? 2 : 0)};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,13 +38,13 @@ export const ContentContainer = styled.div<DrawerProps>`
   top: 0;
   display: flex;
   flex-direction: column;
-  align-items: inherit;
+
   justify-content: space-between;
   z-index: 3;
   background-color: #ffffff;
   height: 100%;
   width: 100%;
-  margin: 0 auto;
+  max-width: 400px;
   transition: all 0.4s ease;
   opacity: ${(props: DrawerProps) => (props.isOpen ? 1 : 0)};
   visibility: ${(props: DrawerProps) => (props.isOpen ? 'visible' : 'hidden')};
@@ -63,7 +63,7 @@ export const BodyContainer = styled.div`
   display: flex;
   padding: 1.4rem;
   width: 100%;
-  height: auto;
+  height: 100%;
   text-align: left;
 `;
 

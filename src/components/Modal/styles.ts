@@ -5,14 +5,14 @@ interface ModalProps {
 }
 
 export const ModalContainer = styled.div<ModalProps>`
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   overflow: hidden;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: ${(props: ModalProps) => (props.isOpen ? 2 : 0)};
   display: flex;
   justify-content: center;
   align-items: center;

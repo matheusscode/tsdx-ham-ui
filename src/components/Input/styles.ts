@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 interface InputProps {
-  isFocused: boolean;
+  isFocused?: boolean;
   variant?: 'outline' | 'filled' | 'flushed' | 'unstyled';
 }
 
@@ -18,24 +18,23 @@ export const InputContainer = styled.input<InputProps>`
   border: 2px solid #cccccc65;
   color: #8592a6;
 
-  ${(props: InputProps) =>
-    props.isFocused &&
-    css`
-      border: 2px solid #0051ff;
-      background-color: #ffffff;
-    `}
+  &:focus {
+    border-color: #0051ff;
+    background-color: #ffffff;
+  }
 
   ${(props: InputProps) =>
     props.variant === 'outline' &&
     css`
-      border: 2px solid ${props.isFocused ? '#0051ff' : '#cccccc65'};
+      border: 2px solid #cccccc65;
+      background-color: #ffffff;
     `}
 
   ${(props: InputProps) =>
     props.variant === 'filled' &&
     css`
-      background-color: ${props.isFocused ? '#ffffff' : '#e2e8f0'};
-      border: 2px solid ${props.isFocused ? '#0051ff' : '#e2e8f0'};
+      background-color: #cccccc65;
+      border: 2px solid #cccccc65;
     `}
 
   ${(props: InputProps) =>
@@ -43,7 +42,7 @@ export const InputContainer = styled.input<InputProps>`
     css`
       border-radius: 0;
       border: none;
-      border-bottom: 2px solid ${props.isFocused ? '#0051ff' : '#e2e8f0'};
+      border-bottom: 2px solid #cccccc65;
     `}
 
   ${(props: InputProps) =>
